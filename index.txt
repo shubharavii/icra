@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ICRA Technologies | Smart Automation Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Cooler Color Palette */
+        :root {
+            --primary: #4ab3ff;
+            /* Cooler blue */
+            --primary-dark: #2a8bc4;
+            /* Darker shade of cooler blue */
+            --secondary: #0a0026;
+            /* Deep dark purple */
+            --accent-purple: #6100a4;
+            /* Existing purple, harmonized */
+            --dark: #0a0a23;
+            --darker: #050510;
+            --light: #ffffff;
+            --gray: #e0e0e0;
+
+            /* Light Theme Variables */
+            --light-bg: #f0f8ff;
+            /* Alice Blue */
+            --light-text: #2c3e50;
+            /* Darker blue-gray */
+            --light-card-bg: #ffffff;
+            --light-border: #d0e8f2;
+            --light-primary: #007bff;
+            /* Standard blue for light mode */
+            --light-primary-dark: #0056b3;
+        }
+
+        /* Theme switching */
+        body.light-theme {
+            background-color: var(--light-bg);
+            color: var(--light-text);
+        }
+
+        body.light-theme header {
+            background: linear-gradient(135deg, var(--light-bg) 0%, var(--light-border) 50%, var(--light-primary) 100%);
+        }
+
+        body.light-theme .logo-text,
+        body.light-theme .service-title,
+        body.light-theme .value-title,
+        body.light-theme .contact-info h3 {
+            color: var(--light-text);
+            text-shadow: none;
+            /* Remove text shadow in light mode */
+        }
+
+        body.light-theme .logo-subtext,
+        body.light-theme .scroll-indicator,
+        body.light-theme .cta-button,
+        body.light-theme .section-title,
+        body.light-theme .section-title::after,
+        body.light-theme .service-icon,
+        body.light-theme .value-icon,
+        body.light-theme .contact-icon,
+        body.light-theme .social-link,
+        body.light-theme .back-to-top {
+            color: var(--light-primary);
+            box-shadow: none;
+        }
+
+        body.light-theme .logo-subtext::after {
+            background: var(--light-primary);
+            box-shadow: 0 0 10px var(--light-primary);
+        }
+
+        body.light-theme .cta-button {
+            border-color: var(--light-primary);
+        }
+
+        body.light-theme .cta-button:hover {
+            background: var(--light-primary);
+            color: var(--light);
+            box-shadow: 0 0 20px rgba(0, 123, 255, 0.4);
+        }
+
+        body.light-theme .cta-button::before {
+            background: linear-gradient(90deg, transparent, rgba(0, 123, 255, 0.2), transparent);
+        }
+
+        body.light-theme .about,
+        body.light-theme .values {
+            background-color: var(--light-card-bg);
+        }
+
+        body.light-theme .services,
+        body.light-theme .contact {
+            background-color: var(--light-bg);
+        }
+
+        body.light-theme .service-card {
+            background: var(--light-card-bg);
+            border-color: var(--light-border);
+        }
+
+        body.light-theme .service-card:hover {
+            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.1);
+            border-color: var(--light-primary);
+        }
+
+        body.light-theme .service-description,
+        body.light-theme .value-description,
+        body.light-theme .contact-item span,
+        body.light-theme footer .copyright {
+            color: var(--light-text);
+        }
+
+        body.light-theme .social-link {
+            border-color: var(--light-primary);
+        }
+
+        body.light-theme .social-link:hover {
+            background: var(--light-primary);
+            color: var(--light);
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.4);
+        }
+
+        body.light-theme .back-to-top {
+            background: var(--light-primary);
+            color: var(--light);
+        }
+
+        body.light-theme .back-to-top:hover {
+            box-shadow: 0 0 20px rgba(0, 123, 255, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--darker);
+            color: var(--light);
+            overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
+            /* Smooth theme transition */
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Header Styles */
+        header {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent-purple) 50%, var(--primary-dark) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            isolation: isolate;
+            transition: background 0.5s ease;
+            /* Smooth theme transition */
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        header .content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+
+        .logo-img {
+        width: 280px; /* Significantly increased from 200px */
+        margin-bottom: 30px; /* Slightly more spacing */
+        filter: drop-shadow(0 0 20px rgba(74, 179, 255, 0.9)); /* Stronger glow */
+        animation: 
+            fadeIn 1s ease-out,
+            pulse 3s ease-in-out infinite 1s;
+        transform-origin: center; /* Ensures scaling happens from center */
+    }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+		@keyframes pulse {
+        0% {
+            transform: scale(1);
+            filter: drop-shadow(0 0 20px rgba(74, 179, 255, 0.9));
+        }
+        50% {
+            transform: scale(1.1); /* More pronounced scaling */
+            filter: drop-shadow(0 0 30px rgba(74, 179, 255, 0.9)); /* Stronger glow at peak */
+        }
+        100% {
+            transform: scale(1);
+            filter: drop-shadow(0 0 20px rgba(74, 179, 255, 0.9));
+        }
+    }
+    }
+
+        .logo-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .logo-text {
+            font-size: 5rem;
+            font-weight: 900;
+            color: var(--light);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px var(--primary);
+            /* Stronger glow */
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards, glow 2s ease-in-out infinite alternate;
+            /* Added glow animation */
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary-dark);
+            }
+
+            to {
+                text-shadow: 0 0 15px var(--primary), 0 0 25px var(--primary-dark);
+            }
+        }
+
+
+        .logo-subtext {
+            font-size: 1.5rem;
+            font-weight: 300;
+            /* Lighter weight for tagline */
+            color: var(--primary);
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+            position: relative;
+            font-family: 'Roboto', sans-serif;
+            text-transform: none;
+            /* No uppercase for tagline */
+        }
+
+        .logo-subtext::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--primary);
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: 50px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.9s forwards;
+        }
+
+        .cta-button:hover {
+            background: var(--primary);
+            color: var(--dark);
+            box-shadow: 0 0 20px var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(74, 179, 255, 0.4), transparent);
+            /* Cooler gradient */
+            transition: 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--primary);
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes bounce {
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0) translateX(-50%);
+            }
+
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--primary);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 0 10px rgba(74, 179, 255, 0.5);
+            /* Cooler shadow */
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary);
+            color: var(--dark);
+            box-shadow: 0 0 15px var(--primary);
+            transform: scale(1.05);
+        }
+
+        .theme-toggle i {
+            color: var(--primary);
+            font-size: 1.4rem;
+            transition: color 0.3s ease;
+        }
+
+        body.light-theme .theme-toggle {
+            background: rgba(255, 255, 255, 0.7);
+            border-color: var(--light-primary);
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+        }
+
+        body.light-theme .theme-toggle i {
+            color: var(--light-primary);
+        }
+
+        body.light-theme .theme-toggle:hover {
+            background: var(--light-primary);
+            color: var(--light);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 20px;
+            position: relative;
+            transition: background-color 0.5s ease;
+            /* Smooth theme transition */
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: var(--primary);
+            position: relative;
+            transition: color 0.5s ease;
+            /* Smooth theme transition */
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
+            box-shadow: 0 0 10px var(--primary);
+            transition: background 0.5s ease, box-shadow 0.5s ease;
+            /* Smooth theme transition */
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--dark);
+            text-align: center;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .about-content p {
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            /* Slower transition */
+        }
+
+        .about-content p.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Services Section */
+        .services {
+            background-color: var(--darker);
+            text-align: center;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: rgba(10, 10, 35, 0.7);
+            border: 1px solid rgba(74, 179, 255, 0.2);
+            /* Cooler border */
+            border-radius: 10px;
+            padding: 40px 30px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .service-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+            /* Slower transition */
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            /* Slight scale on hover */
+            box-shadow: 0 10px 30px rgba(74, 179, 255, 0.25);
+            /* Cooler shadow */
+            border-color: var(--primary);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            transition: color 0.5s ease;
+            /* Smooth theme transition */
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--light);
+            transition: color 0.5s ease;
+            /* Smooth theme transition */
+        }
+
+        .service-description {
+            font-size: 1rem;
+            color: var(--gray);
+            line-height: 1.6;
+            transition: color 0.5s ease;
+            /* Smooth theme transition */
+        }
+
+        /* Values Section */
+        .values {
+            background-color: var(--dark);
+        }
+
+        .values-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .value-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+            /* Slower transition */
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            transition: color 0.5s ease;
+            /* Smooth theme transition */
+        }
+
+        .value-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--light);
+            transition: color 0.5s ease;
+            /* Smooth theme transition */
+        }
+
+        .value-description {
+            font-size: 1rem;
+            color: var(--gray);
+            line-height: 1.6;
+            transition: color 0.5s ease;
+            /* Smooth theme transition */
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: var(--darker);
+            text-align: center;
+            padding-bottom: 150px;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            text-align: left;
+        }
+
+        .contact-info {
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        .contact-info.visible {
+            opacity: 1;
+            transform: translateX(0);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .contact-details {
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            /* Align icon and text to top */
+            margin-bottom: 15px;
+            color: var(--gray);
+            transition: color 0.5s ease;
+            /* Smooth theme transition */
+        }
+
+        .contact-icon {
+            color: var(--primary);
+            margin-right: 15px;
+            font-size: 1.2rem;
+            width: 20px;
+            text-align: center;
+            flex-shrink: 0;
+            /* Prevent icon from shrinking */
+            padding-top: 2px;
+            /* Adjust vertical alignment for icon */
+            transition: color 0.5s ease;
+            /* Smooth theme transition */
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: flex-start;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateY(-3px) scale(1.1);
+            /* Slight scale on hover */
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000;
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            transition: background-color 0.5s ease;
+            /* Smooth theme transition */
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .copyright {
+            color: var(--gray);
+            font-size: 0.9rem;
+            transition: color 0.5s ease;
+            /* Smooth theme transition */
+        }
+
+        .back-to-top {
+            position: absolute;
+            right: 30px;
+            bottom: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(74, 179, 255, 0.7);
+            /* Cooler shadow */
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px var(--primary);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .logo-img {
+        width: 220px; /* Increased from 200px */
+        margin-bottom: 20px;
+        filter: drop-shadow(0 0 15px rgba(74, 179, 255, 0.9));
+        animation: 
+            fadeIn 1s ease-out,
+            pulse 3s ease-in-out infinite 1s; /* Added pulse animation */
+    }
+
+            .logo-text {
+                font-size: 3.5rem;
+            }
+
+            .logo-subtext {
+                font-size: 1.2rem;
+            }
+
+            .contact-info {
+                text-align: center;
+            }
+
+            .contact-item {
+                justify-content: center;
+                align-items: center;
+            }
+
+            .contact-icon {
+                padding-top: 0;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .theme-toggle {
+                top: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+            }
+
+            .theme-toggle i {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+        </div>
+        <div class="content">
+            <img src="https://github.com/shubharavii/icra/blob/main/WhatsApp%20Image%202025-05-30%20at%2007.15.15_c1eb19ae.jpg?raw=true" alt="ICRA Technologies Logo" class="logo-img">
+            <div class="logo-container">
+                <h1 class="logo-text">ICRA</h1>
+                <h2 class="logo-subtext">The Right Ideas to Bright Ideas</h2>
+            </div>
+            <a href="#contact" class="cta-button">Get Started</a>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </header>
+
+    <section class="about">
+        <h2 class="section-title">About Us</h2>
+        <div class="about-content">
+            <p>At ICRA Technologies, we believe that the best automation isn't one-size-fits-all; it's a perfect fit for your unique business needs. Our mission is to transform your vision into intelligent, automated reality through cutting-edge technology and personalized solutions.</p>
+
+            <p>We take a collaborative approach, working closely with you to understand your specific challenges and goals. Our team of experts then designs and deploys bespoke automation strategies that integrate seamlessly into your existing operations, ensuring a smooth transition and maximum impact.</p>
+
+            <p>With over a decade of experience in the automation industry, we've helped hundreds of businesses across Bangalore and beyond to optimize their operations, enhance security, and create smarter environments. Our solutions are scalable, reliable, and designed to grow with your business.</p>
+
+            <p>Consider us an extension of your team - we're dedicated to your growth and success through smart, customized automation solutions that deliver real results.</p>
+        </div>
+    </section>
+
+    <section class="services">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <h3 class="service-title">Networking & Data Solutions</h3>
+                <p class="service-description">Enterprise-grade networking infrastructure and data management solutions tailored to your business requirements for seamless connectivity and data flow.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-sliders-h"></i>
+                </div>
+                <h3 class="service-title">Smart Window Solutions</h3>
+                <p class="service-description">Automated shades and blinds with intelligent light and temperature control for optimal comfort and energy efficiency in any space.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3 class="service-title">Residential Automation</h3>
+                <p class="service-description">Complete smart home solutions that integrate lighting, security, climate control and entertainment systems for ultimate convenience and safety.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-building"></i>
+                </div>
+                <h3 class="service-title">Commercial Automation</h3>
+                <p class="service-description">Comprehensive automation systems for offices, retail spaces and industrial facilities to enhance productivity and reduce operational costs.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="service-title">Security Systems</h3>
+                <p class="service-description">Advanced CCTV surveillance, access control and alarm systems with remote monitoring capabilities for complete peace of mind.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3 class="service-title">Smart Lighting</h3>
+                <p class="service-description">Intelligent lighting systems with motion sensors, daylight harvesting and customizable scenes for energy savings and ambiance control.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="values">
+        <h2 class="section-title">Why Choose ICRA</h2>
+        <div class="values-container">
+            <div class="value-item">
+                <div class="value-icon">
+                    <i class="fas fa-user-cog"></i>
+                </div>
+                <h3 class="value-title">Tailored Solutions</h3>
+                <p class="value-description">We don't believe in one-size-fits-all. Every solution we deliver is customized to meet your specific needs and business objectives.</p>
+            </div>
+
+            <div class="value-item">
+                <div class="value-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <h3 class="value-title">Collaborative Approach</h3>
+                <p class="value-description">We work closely with you at every stage, from initial consultation to implementation and beyond, ensuring complete satisfaction.</p>
+            </div>
+
+            <div class="value-item">
+                <div class="value-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h3 class="value-title">Seamless Integration</h3>
+                <p class="value-description">Our solutions are designed to work harmoniously with your existing infrastructure for a smooth transition and immediate benefits.</p>
+            </div>
+
+            <div class="value-item">
+                <div class="value-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3 class="value-title">Ongoing Support</h3>
+                <p class="value-description">Our relationship doesn't end with installation. We provide comprehensive training and 24/7 support to ensure your systems perform optimally.</p>
+            </div>
+
+            <div class="value-item">
+                <div class="value-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <h3 class="value-title">Proven Expertise</h3>
+                <p class="value-description">With over a decade in the industry, our seasoned team brings unparalleled knowledge and a track record of successful deployments.</p>
+            </div>
+
+            <div class="value-item">
+                <div class="value-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h3 class="value-title">Future-Ready Technology</h3>
+                <p class="value-description">We deploy cutting-edge, scalable solutions designed not just for today, but to evolve and grow with your future needs.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Get in Touch</h3>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <span>Chandra Shekar Gowda BM (Managing Director)</span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <span>+91 81518 79391</span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <span>Ravikeerthana Chandrashekhar (Creative Director)</span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <span>+91 94813 25000</span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <span>icratechnologies25@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <span>www.icratechnologies.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <span>#F-509, BEL Layout, 1st Stage, Bharatnagar, Herohalli, Bangalore - 560091</span>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 40px;">Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/icra_tech?igsh=ZzJndHozM3Q3cXZo" class="social-link" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p class="copyright">© 2025 ICRA Technologies. All Rights Reserved.</p>
+            <a href="#" class="back-to-top">
+                <i class="fas fa-arrow-up"></i>
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll to section
+        function setupScroll() {
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            scrollIndicator.addEventListener('click', () => {
+                window.scrollTo({
+                    top: window.innerHeight,
+                    behavior: 'smooth'
+                });
+            });
+
+            const backToTop = document.querySelector('.back-to-top');
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTop.style.opacity = '1';
+                    backToTop.style.visibility = 'visible';
+                } else {
+                    backToTop.style.opacity = '0';
+                    backToTop.style.visibility = 'hidden';
+                }
+            });
+        }
+
+        // Intersection Observer for scroll animations
+        function setupIntersectionObserver() {
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all elements with animation classes
+            document.querySelectorAll('.about-content p, .service-card, .value-item, .contact-info').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Theme Toggle Functionality
+        function setupThemeToggle() {
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
+            const currentTheme = localStorage.getItem('theme');
+
+            // Apply saved theme on load
+            if (currentTheme) {
+                body.classList.add(currentTheme);
+                updateThemeToggleIcon(currentTheme);
+            } else {
+                // Default to dark theme if no preference is saved
+                body.classList.add('dark-theme'); // Explicitly add dark-theme class
+                updateThemeToggleIcon('dark-theme');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                if (body.classList.contains('light-theme')) {
+                    body.classList.remove('light-theme');
+                    body.classList.add('dark-theme');
+                    localStorage.setItem('theme', 'dark-theme');
+                    updateThemeToggleIcon('dark-theme');
+                } else {
+                    body.classList.remove('dark-theme'); // Ensure dark-theme is removed if present
+                    body.classList.add('light-theme');
+                    localStorage.setItem('theme', 'light-theme');
+                    updateThemeToggleIcon('light-theme');
+                }
+            });
+
+            function updateThemeToggleIcon(theme) {
+                const icon = themeToggle.querySelector('i');
+                if (theme === 'light-theme') {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                } else {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                }
+            }
+        }
+
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            setupScroll();
+            setupIntersectionObserver();
+            setupThemeToggle();
+        });
+    </script>
+</body>
+
+</html>
